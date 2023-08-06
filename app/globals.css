@@ -89,3 +89,16 @@
         @apply bg-background text-foreground;
     }
 }
+
+.container {
+    width: min(1100px, 90%);
+    margin-inline: auto;
+}
+
+.navbar-border {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.nav-closed * {
+    display: none;
+}
