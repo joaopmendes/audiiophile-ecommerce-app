@@ -24,6 +24,7 @@
         "configure-husky": "npx husky install && npx husky add .husky/pre-commit \"npx --no-install lint-staged\""
     },
     "dependencies": {
+        "@clerk/nextjs": "^4.23.2",
         "@hookform/resolvers": "^3.2.0",
         "@radix-ui/react-label": "^2.0.2",
         "@radix-ui/react-slot": "^1.0.2",

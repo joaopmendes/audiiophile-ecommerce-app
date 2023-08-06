@@ -1,6 +1,7 @@
 import './globals.css';
 import type { Metadata } from 'next';
 import { Manrope } from 'next/font/google';
+import { ClerkProvider } from '@clerk/nextjs';
 
 const inter = Manrope({ subsets: ['latin'], weight: ['700', '500', '400'] });
 
@@ -12,7 +13,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
         <html lang='en'>
-            <body className={inter.className}>{children}</body>
+            <ClerkProvider>
+                <body className={inter.className}>{children}</body>
+            </ClerkProvider>
         </html>
     );
 }
