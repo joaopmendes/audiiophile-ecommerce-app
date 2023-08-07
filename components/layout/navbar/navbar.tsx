@@ -7,11 +7,13 @@ import { cn } from '@/lib/utils';
 import { motion } from 'framer-motion';
 import { CategoriesNavbar } from '@/components/layout/navbar/categories';
 import { UserButton } from '@clerk/nextjs';
+import { AppLogo } from '@/components/AppLogo';
+import { NavbarDesktop } from '@/components/layout/navbar/navbar-desktop';
 
 export const Navbar: React.FC<{}> = (props) => {
     const [mobileNavbarOpen, setMobileNavbarOpen] = useState(false);
     return (
-        <header className={'relative bg-dark'}>
+        <header className={'relative'}>
             <nav
                 className={'navbar-border container mx-auto flex items-center justify-between border-opacity-20 py-10'}
             >
@@ -28,30 +30,11 @@ export const Navbar: React.FC<{}> = (props) => {
                     </div>
 
                     {/* shared */}
-                    <Link href={'/'}>
-                        <Image src={'/shared/desktop/logo.svg'} alt={'Audiophile'} width='143' height='25' />
-                    </Link>
+                    <AppLogo />
                 </div>
 
                 {/* desktop navbar */}
-                <ul className={'hidden items-center justify-between space-x-10 text-white desktop:flex'}>
-                    <li>
-                        <Link
-                            href={'/'}
-                            className={'hidden text-sub-title text-sub-title uppercase text-white  desktop:block'}
-                        >
-                            Home
-                        </Link>
-                    </li>
-
-                    {routes.map((route, index) => (
-                        <li key={index}>
-                            <Link href={route.path} className={'text-sub-title text-sub-title uppercase  text-white'}>
-                                {route.name}
-                            </Link>
-                        </li>
-                    ))}
-                </ul>
+                <NavbarDesktop className={'desktop:flex'} />
 
                 {/* mobile/tablet navbar */}
                 <motion.ul
