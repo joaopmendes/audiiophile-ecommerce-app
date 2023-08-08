@@ -35,6 +35,8 @@ module.exports = {
             gray: 'hsl(var(--gray))',
             white: 'hsl(var(--white))',
             'pure-white': 'hsl(var(--pure-white))',
+            red: '#FF0000',
+            'pure-white': 'hsl(var(--pure-white))',
 
             border: 'hsl(var(--border))',
             input: 'hsl(var(--input))',
