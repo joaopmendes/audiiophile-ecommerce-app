@@ -1,15 +1,14 @@
-import routes from '@/constants/routes';
+'use client';
 import { CategoryItem } from '@/components/layout/navbar/category-item';
-import { CategoryWithImage } from '@/server/types';
 import { useQuery } from '@tanstack/react-query';
 import { Spinner } from '@/components/ui/spinner';
-import { getCategories } from '@/server/actions/categories.action';
+import { getCategoriesWithImage } from '@/server/actions/categories.action';
 
 type CategoriesNavbarProps = {};
 export const CategoriesNavbar: React.FC<CategoriesNavbarProps> = () => {
     const { isLoading, error, data } = useQuery({
         queryKey: ['categories'],
-        queryFn: getCategories,
+        queryFn: getCategoriesWithImage,
     });
 
     if (isLoading) return <Spinner />;

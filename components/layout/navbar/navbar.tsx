@@ -14,7 +14,7 @@ export const Navbar: React.FC<{}> = (props) => {
     const [mobileNavbarOpen, setMobileNavbarOpen] = useState(false);
 
     return (
-        <header className={'relative'}>
+        <header className={'relative bg-slate'}>
             <nav
                 className={'navbar-border container mx-auto flex items-center justify-between border-opacity-20 py-10'}
             >

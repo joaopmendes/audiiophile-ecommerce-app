@@ -1,4 +1,3 @@
-'use client';
 import styles from './page.module.css';
 import { cn } from '@/lib/utils';
 import { Hero } from './components/hero';
@@ -25,13 +24,6 @@ export default function Home() {
                 <FeaturedProducts />
             </section>
 
-            <Button
-                onClick={() => {
-                    databaseSeed();
-                }}
-            >
-                Seed Database
-            </Button>
             <FooterBanner />
         </>
     );

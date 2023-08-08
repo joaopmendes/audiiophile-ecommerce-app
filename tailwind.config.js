@@ -28,6 +28,7 @@ module.exports = {
         colors: {
             transparent: 'transparent',
             current: 'currentColor',
+            slate: 'var(--slate)',
             orange: 'hsl(var(--orange))',
             'light-orange': 'hsl(var(--light-orange))',
             dark: 'hsl(var(--dark))',

@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { ImageViewPort } from '@/components/ui/image-view-port';
 
 export const FooterBanner = () => {
     return (
@@ -21,30 +22,17 @@ export const FooterBanner = () => {
                     </p>
                 </div>
                 <div className={'relative h-[300px] w-full desktop:h-[588px] desktop:w-full'}>
-                    <div className={'hidden desktop:block'}>
-                        <Image
-                            className={'order-1 tablet:order-2'}
-                            src={'/shared/desktop/image-best-gear.jpg'}
-                            fill
-                            alt={'best gear'}
-                        />
-                    </div>
-                    <div className={'hidden tablet:block desktop:hidden'}>
-                        <Image
-                            className={'order-1 tablet:order-2'}
-                            src={'/shared/tablet/image-best-gear.jpg'}
-                            fill
-                            alt={'best gear'}
-                        />
-                    </div>
-                    <div className={'tablet:hidden'}>
-                        <Image
-                            className={'order-1 tablet:order-2'}
-                            src={'/shared/mobile/image-best-gear.jpg'}
-                            fill
-                            alt={'best gear'}
-                        />
-                    </div>
+                    <ImageViewPort
+                        className={'order-1 tablet:order-2'}
+                        srcSet={{
+                            mobile: '/shared/mobile/image-best-gear.jpg',
+                            tablet: '/shared/tablet/image-best-gear.jpg',
+                            desktop: '/shared/desktop/image-best-gear.jpg',
+                        }}
+                        fill
+                        alt={'best gear'}
+                        src={''}
+                    />
                 </div>
             </div>
         </div>
