@@ -1,0 +1,96 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider     = "postgresql"
+  url          = env("DATABASE_URL")
+  relationMode = "prisma"
+}
+
+model AudiophileProduct {
+  id          String  @id @default(uuid())
+  slug        String  @unique
+  name        String
+  isNew       Boolean @default(false)
+  price       Float
+  description String
+  features    String
+
+  productImageId String
+  productImage   ProductImage @relation(fields: [productImageId], references: [id])
+
+  categoryId String
+  category   Category @relation(fields: [categoryId], references: [id])
+
+  categoryImagePreviewId String
+  categoryImagePreview   CategoryPreviewImage @relation(fields: [categoryImagePreviewId], references: [id])
+
+  featuresIncluded Feature[]
+
+  galery Image[]
+
+  relatedProducts String[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Category {
+  id   String @id @default(uuid())
+  name String
+  slug String @unique
+
+  categoryImageId String
+  categoryImage   CategoryImage       @relation(fields: [categoryImageId], references: [id])
+  products        AudiophileProduct[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Feature {
+  id       String @id @default(uuid())
+  name     String
+  quantity String
+
+  product   AudiophileProduct @relation(fields: [productId], references: [id])
+  productId String
+}
+
+model Image {
+  id         String             @id @default(uuid())
+  desktopUrl String
+  tabletUrl  String
+  mobileUrl  String
+  isBig      Boolean            @default(false)
+  Product    AudiophileProduct? @relation(fields: [productId], references: [id])
+  productId  String?
+}
+
+model ProductImage {
+  id                String              @id @default(uuid())
+  desktopUrl        String
+  tabletUrl         String
+  mobileUrl         String
+  AudiophileProduct AudiophileProduct[]
+}
+
+model CategoryPreviewImage {
+  id                String              @id @default(uuid())
+  desktopUrl        String
+  tabletUrl         String
+  mobileUrl         String
+  AudiophileProduct AudiophileProduct[]
+}
+
+model CategoryImage {
+  id       String     @id @default(uuid())
+  url      String
+  width    Int
+  height   Int
+  Category Category[]
+}
