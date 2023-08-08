@@ -2,27 +2,36 @@ import { Route } from '@/constants/routes';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import { Category, CategoryWithImage } from '@/server/types';
 
-type CateogryItemProps = {
-    route: Route;
+type CategoryItemProps = {
+    category: CategoryWithImage;
 };
-export const CategoryItem: React.FC<CateogryItemProps> = ({ route }) => {
+export const CategoryItem: React.FC<CategoryItemProps> = ({ category }) => {
     return (
         <div className={'relative flex h-40 w-full flex-col items-center justify-center rounded-2xl bg-gray '}>
-            <div className={'relative -top-[34px]'}>
-                <div className={'relative'}>
-                    <Image
-                        src={route.image.src}
-                        alt={route.name}
-                        width={route.image.width}
-                        height={route.image.height}
-                    />
+            <div className={'relative -top-[42px]'}>
+                <div className={'flex items-start justify-center'}>
+                    <div className={`relative justify-center`}>
+                        <Image
+                            src={category.categoryImage.url}
+                            alt={category.name}
+                            width={0}
+                            height={0}
+                            sizes='100vw'
+                            quality='100'
+                            style={{
+                                width: `${category.categoryImage.width}px`,
+                                height: `${category.categoryImage.height}px`,
+                            }}
+                        />
+                    </div>
                 </div>
 
                 <div className={'text-center'}>
-                    <p className={'text-bold  text-h6 uppercase'}>{route.name}</p>
+                    <p className={'text-bold  text-h6 uppercase'}>{category.name}</p>
                     <Link
-                        href={route.path}
+                        href={`/categories/${category.slug}`}
                         className={'flex items-center justify-center text-body uppercase text-dark opacity-50'}
                     >
                         Shop

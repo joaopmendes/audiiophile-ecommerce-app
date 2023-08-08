@@ -6,6 +6,7 @@ import { Navbar } from '@/components/layout/navbar/navbar';
 import { MainContainer } from '@/components/layout/main-container';
 import { AppWrapper } from '@/components/layout/app-wrapper';
 import { Footer } from '@/components/layout/footer';
+import QueryProvider from '@/providers/query-provider';
 
 const inter = Manrope({ subsets: ['latin'], weight: ['700', '500', '400'] });
 
@@ -18,13 +19,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     return (
         <html lang='en'>
             <ClerkProvider>
-                <body className={inter.className}>
-                    <AppWrapper>
-                        <Navbar />
-                        <MainContainer>{children}</MainContainer>
-                        <Footer />
-                    </AppWrapper>
-                </body>
+                <QueryProvider>
+                    <body className={inter.className}>
+                        <AppWrapper>
+                            <Navbar />
+                            <MainContainer>{children}</MainContainer>
+                            <Footer />
+                        </AppWrapper>
+                    </body>
+                </QueryProvider>
             </ClerkProvider>
         </html>
     );

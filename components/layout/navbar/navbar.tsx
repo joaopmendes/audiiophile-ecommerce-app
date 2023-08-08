@@ -1,7 +1,6 @@
 'use client';
 import Link from 'next/link';
 import Image from 'next/image';
-import routes from '@/constants/routes';
 import { useState } from 'react';
 import { cn } from '@/lib/utils';
 import { motion } from 'framer-motion';
@@ -9,9 +8,11 @@ import { CategoriesNavbar } from '@/components/layout/navbar/categories';
 import { UserButton } from '@clerk/nextjs';
 import { AppLogo } from '@/components/AppLogo';
 import { NavbarDesktop } from '@/components/layout/navbar/navbar-desktop';
+import { useQuery } from '@tanstack/react-query';
 
 export const Navbar: React.FC<{}> = (props) => {
     const [mobileNavbarOpen, setMobileNavbarOpen] = useState(false);
+
     return (
         <header className={'relative'}>
             <nav
