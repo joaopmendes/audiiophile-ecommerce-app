@@ -1,28 +1,29 @@
-import { getCategoryBySlugWithProducts } from '@/server/actions/categories.action';
-import { ProductList } from '@/features/category-page/components/product-list/product-list';
 import { FooterBanner } from '@/components/layout/footer-banner';
 import { CategoriesNavbar } from '@/components/layout/navbar/categories';
+import { getProductBySlug } from '@/server/actions/products.action';
+import { ProductPreview } from '@/features/product-page/components/product-preview';
+import { ProductDescription } from '@/features/product-page/components/product-description';
+import { ProductGallery } from '@/features/product-page/components/product-gallery';
+import { RelatedProducts } from '@/features/product-page/components/related-products';
 
-type CategoryPageProps = {
+type ProductPageProps = {
     slug: string;
 };
-export default async function CategoryPage({ slug }: CategoryPageProps) {
-    const category = await getCategoryBySlugWithProducts(slug);
-
+export default async function ProductPage({ slug }: ProductPageProps) {
+    const product = await getProductBySlug(slug);
     return (
         <div className={'flex flex-col space-y-40'}>
-            <header className={'bg-slate'}>
-                <h1 className={'p-36 text-center text-h2 uppercase text-white'}>{slug}</h1>
-            </header>
+            <div className='container mt-40 space-y-20'>
+                <ProductPreview product={product} />
+                <ProductDescription product={product} />
 
-            <section className={'container'}>
-                <ProductList products={category.products} />
-            </section>
+                <ProductGallery product={product} />
+                <RelatedProducts product={product} />
+            </div>
 
             <div className='container'>
                 <CategoriesNavbar />
             </div>
-
             <FooterBanner />
         </div>
     );

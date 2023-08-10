@@ -1,6 +1,7 @@
-'use server';
-import seedDbData from '@/server/data/seedDbData';
-import prisma from '@/lib/prismadb';
+import seedDbData from './seedDbData';
+import { PrismaClient } from '@prisma/client';
+
+const prisma = new PrismaClient();
 
 async function createCategories() {
     const count = await prisma.category.count();
@@ -12,8 +13,8 @@ async function createCategories() {
             categoryImage: {
                 create: {
                     url: '/shared/desktop/image-category-thumbnail-earphones.png',
-                    width: 200,
-                    height: 200,
+                    width: 178,
+                    height: 161,
                 },
             },
         },
@@ -25,8 +26,8 @@ async function createCategories() {
             categoryImage: {
                 create: {
                     url: '/shared/desktop/image-category-thumbnail-headphones.png',
-                    width: 80,
-                    height: 200,
+                    width: 120,
+                    height: 160,
                 },
             },
         },
@@ -38,8 +39,8 @@ async function createCategories() {
             categoryImage: {
                 create: {
                     url: '/shared/desktop/image-category-thumbnail-speakers.png',
-                    width: 200,
-                    height: 200,
+                    width: 121,
+                    height: 146,
                 },
             },
         },
@@ -76,6 +77,7 @@ export const databaseSeed = async () => {
         });
 
         const promises = seedDbData.map(async (product) => {
+            console.log(product.slug);
             return prisma.audiophileProduct.create({
                 data: {
                     slug: product.slug,
@@ -120,7 +122,19 @@ export const databaseSeed = async () => {
                             isBig: index === 2,
                         })),
                     },
-                    relatedProducts: product.others.map((relatedProduct) => relatedProduct.slug),
+                    relatedProducts: {
+                        create: product.others.map((relatedProduct) => ({
+                            slug: relatedProduct.slug,
+                            name: relatedProduct.name,
+                            relatedProductImage: {
+                                create: {
+                                    tabletUrl: relatedProduct.image.tablet,
+                                    mobileUrl: relatedProduct.image.mobile,
+                                    desktopUrl: relatedProduct.image.desktop,
+                                },
+                            },
+                        })),
+                    },
                 },
             });
         });
@@ -130,3 +144,13 @@ export const databaseSeed = async () => {
         console.log(error);
     }
 };
+
+databaseSeed()
+    .then(async () => {
+        await prisma.$disconnect();
+    })
+    .catch(async (e) => {
+        console.error(e);
+        await prisma.$disconnect();
+        process.exit(1);
+    });

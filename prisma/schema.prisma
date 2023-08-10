@@ -33,10 +33,31 @@ model AudiophileProduct {
 
   galery Image[]
 
-  relatedProducts String[]
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+  relatedProducts RelatedProduct[]
+}
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+model RelatedProduct {
+  id   String @id @default(uuid())
+  slug String
+  name String
+
+  audiophileProduct   AudiophileProduct @relation(fields: [audiophileProductId], references: [id])
+  audiophileProductId String
+
+  createdAt             DateTime            @default(now())
+  updatedAt             DateTime            @updatedAt
+  relatedProductImage   RelatedProductImage @relation(fields: [relatedProductImageId], references: [id])
+  relatedProductImageId String
+}
+
+model RelatedProductImage {
+  id             String           @id @default(uuid())
+  desktopUrl     String
+  tabletUrl      String
+  mobileUrl      String
+  RelatedProduct RelatedProduct[]
 }
 
 model Category {
