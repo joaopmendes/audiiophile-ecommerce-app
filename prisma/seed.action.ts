@@ -96,8 +96,8 @@ export const databaseSeed = async () => {
                                 (product.category === 'earphones'
                                     ? earphonesCategoryId?.id
                                     : product.category === 'headphones'
-                                    ? headphonesCategoryId?.id
-                                    : speakersCategoryId?.id) || '',
+                                      ? headphonesCategoryId?.id
+                                      : speakersCategoryId?.id) || '',
                         },
                     },
                     productImage: {

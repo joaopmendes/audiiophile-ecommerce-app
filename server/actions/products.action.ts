@@ -31,6 +31,11 @@ export const getProductById = async (id: string): Promise<AudiophileProductWithE
             productImage: true,
             featuresIncluded: true,
             galery: true,
+            relatedProducts: {
+                include: {
+                    relatedProductImage: true,
+                },
+            },
         },
     });
 };
