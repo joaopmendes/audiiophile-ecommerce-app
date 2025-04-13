@@ -25,7 +25,7 @@ export const ProductPreview: React.FC<ProductPreviewProps> = ({ product }) => {
 
                 <div className={'tablet:pl-24'}>
                     <ProductInfo product={product} />
-                    <AddToCart />
+                    <AddToCart product={product} />
                 </div>
             </div>
         </>

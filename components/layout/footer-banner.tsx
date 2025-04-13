@@ -3,7 +3,7 @@ import { ImageViewPort } from '@/components/ui/image-view-port';
 
 export const FooterBanner = () => {
     return (
-        <div className={'container'}>
+        <div className={' container'} style={{ marginBottom: '100px' }}>
             <div className={'grid grid-cols-1 gap-6 desktop:grid-cols-2'}>
                 <div
                     className={

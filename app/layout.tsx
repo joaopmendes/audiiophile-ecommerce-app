@@ -7,6 +7,7 @@ import { MainContainer } from '@/components/layout/main-container';
 import { AppWrapper } from '@/components/layout/app-wrapper';
 import { Footer } from '@/components/layout/footer';
 import QueryProvider from '@/providers/query-provider';
+import { Suspense } from 'react';
 
 const inter = Manrope({ subsets: ['latin'], weight: ['700', '500', '400'] });
 
@@ -23,7 +24,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     <body className={inter.className}>
                         <AppWrapper>
                             <Navbar />
-                            <MainContainer>{children}</MainContainer>
+                            <MainContainer>
+                                <Suspense
+                                    fallback={
+                                        <div className='flex h-full w-full items-center justify-center'>Loading...</div>
+                                    }
+                                >
+                                    {children}
+                                </Suspense>
+                            </MainContainer>
                             <Footer />
                         </AppWrapper>
                     </body>

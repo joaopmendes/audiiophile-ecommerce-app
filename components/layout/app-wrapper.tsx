@@ -1,5 +1,5 @@
 import { PropsWithChildren } from 'react';
 
 export const AppWrapper: React.FC<PropsWithChildren<{}>> = (props) => {
-    return <section className={'app-wrapper h-full min-h-screen w-full'}>{props.children}</section>;
+    return <section className={'app-wrapper flex h-full min-h-screen w-full flex-col'}>{props.children}</section>;
 };

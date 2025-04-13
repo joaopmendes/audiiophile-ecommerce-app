@@ -1,8 +1,8 @@
-import { Route } from '@/constants/routes';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Category, CategoryWithImage } from '@/server/types';
+import { Route } from '@/constants/interfaces';
 
 type CategoryItemProps = {
     category: CategoryWithImage;
@@ -11,7 +11,7 @@ export const CategoryItem: React.FC<CategoryItemProps> = ({ category }) => {
     return (
         <div className={'relative flex h-40 w-full flex-col items-center justify-center rounded-2xl bg-gray '}>
             <div className={'relative -top-[42px]'}>
-                <div className={'flex items-start justify-center'}>
+                <div className={'flex h-32 items-start justify-center'}>
                     <div className={`relative justify-center`}>
                         <Image
                             src={category.categoryImage.url}
@@ -22,7 +22,7 @@ export const CategoryItem: React.FC<CategoryItemProps> = ({ category }) => {
                             quality='100'
                             style={{
                                 width: `${category.categoryImage.width}px`,
-                                height: `${category.categoryImage.height}px`,
+                                // height: `${category.categoryImage.height}px`,
                             }}
                         />
                     </div>

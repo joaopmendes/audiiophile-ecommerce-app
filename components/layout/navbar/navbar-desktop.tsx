@@ -5,6 +5,7 @@ import { cn } from '@/lib/utils';
 import { usePathname } from 'next/navigation';
 import { useQuery } from '@tanstack/react-query';
 import { getCategoriesWithImage } from '@/server/actions/categories.action';
+import { Spinner } from '@/components/ui/spinner';
 
 type NavbarDesktopProps = {
     show?: boolean;
@@ -17,7 +18,9 @@ export const NavbarDesktop: React.FC<NavbarDesktopProps> = ({ className, show, .
     const pathName = usePathname();
     const linkClasses = 'text-sub-title uppercase text-white';
 
-    if (isLoading || error) return null;
+    if (isLoading) return <Spinner />;
+    if (error) return <p className={'text-body text-red'}>Something went wrong... Please refresh the page</p>;
+
     return (
         <ul className={cn('hidden items-center justify-between space-x-10 text-white ', className)} {...rest}>
             <li>
@@ -33,7 +36,7 @@ export const NavbarDesktop: React.FC<NavbarDesktopProps> = ({ className, show, .
                     <li key={index}>
                         <Link
                             href={routePath}
-                            className={cn(linkClasses, { ['text-orange']: pathName.startsWith(routePath) })}
+                            className={cn(linkClasses, { 'text-orange': pathName.startsWith(routePath) })}
                         >
                             {category.name}
                         </Link>

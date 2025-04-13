@@ -2,16 +2,20 @@
 import { NumberInput } from '@/components/ui/number-input';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
+import { AudiophileProductWithEverything } from '@/server/types';
+import { json } from 'stream/consumers';
 
 type AddToCartProps = {
-    // product: AudiophileProductWithEverything;
+    product: AudiophileProductWithEverything;
 };
-export const AddToCart: React.FC<AddToCartProps> = ({}) => {
+export const AddToCart: React.FC<AddToCartProps> = ({ product }) => {
     const [value, setValue] = useState(1);
     return (
         <div className={'flex gap-6'}>
             <NumberInput value={value} setValue={setValue} min={1} />
-            <Button className={'capitalize'}>Add to cart</Button>
+            <Button className={'capitalize'} onClick={() => console.log(JSON.stringify(product, null, 2))}>
+                Add to cart
+            </Button>
         </div>
     );
 };

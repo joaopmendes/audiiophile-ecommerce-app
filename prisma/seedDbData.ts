@@ -1,4 +1,4 @@
-export default [
+const seedData = [
     {
         id: 1,
         slug: 'yx1-earphones',
@@ -532,3 +532,5 @@ export default [
         ],
     },
 ];
+
+export default seedData;
