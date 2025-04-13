@@ -3,12 +3,16 @@ import Image from 'next/image';
 import { useState } from 'react';
 import { cn } from '@/lib/utils';
 import { motion } from 'framer-motion';
-import { CategoriesNavbar } from '@/components/layout/navbar/categories';
 import { UserButton } from '@clerk/nextjs';
 import { AppLogo } from '@/components/AppLogo';
-import { NavbarDesktop } from '@/components/layout/navbar/navbar-desktop';
+import { CategoryWithImage } from '@/server/types';
+import { NavbarDesktop } from './navbar-desktop';
+import { CategoriesContent } from './categories-content';
 
-export const Navbar: React.FC<{}> = (props) => {
+type NavbarProps = {
+    categories: CategoryWithImage[];
+};
+export const Navbar: React.FC<NavbarProps> = ({ categories }) => {
     const [mobileNavbarOpen, setMobileNavbarOpen] = useState(false);
 
     return (
@@ -33,7 +37,7 @@ export const Navbar: React.FC<{}> = (props) => {
                 </div>
 
                 {/* desktop navbar */}
-                <NavbarDesktop className={'desktop:flex'} />
+                <NavbarDesktop categories={categories} className={'desktop:flex'} />
 
                 {/* mobile/tablet navbar */}
                 <motion.ul
@@ -49,7 +53,7 @@ export const Navbar: React.FC<{}> = (props) => {
                     )}
                 >
                     <div className='flex h-full w-full flex-col items-center justify-center px-8'>
-                        <CategoriesNavbar />
+                        <CategoriesContent categories={categories} />
                     </div>
                 </motion.ul>
 

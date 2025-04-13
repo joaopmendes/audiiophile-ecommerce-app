@@ -1,7 +1,7 @@
 import { getCategoryBySlugWithProducts } from '@/server/actions/categories.action';
 import { ProductList } from '@/features/category-page/components/product-list/product-list';
 import { FooterBanner } from '@/components/layout/footer-banner';
-import { CategoriesNavbar } from '@/components/layout/navbar/categories';
+import { CategoriesNavbar } from '@/components/layout/navbar/categories-navbar';
 
 type CategoryPageProps = {
     slug: string;

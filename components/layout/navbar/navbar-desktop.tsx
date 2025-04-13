@@ -1,26 +1,16 @@
 'use client';
 import Link from 'next/link';
-import routes from '@/constants/routes';
 import { cn } from '@/lib/utils';
 import { usePathname } from 'next/navigation';
-import { useQuery } from '@tanstack/react-query';
-import { getCategoriesWithImage } from '@/server/actions/categories.action';
-import { Spinner } from '@/components/ui/spinner';
+import { CategoryWithImage } from '@/server/types';
 
-type NavbarDesktopProps = {
+export type NavbarDesktopProps = {
+    categories: CategoryWithImage[];
     show?: boolean;
 } & React.ComponentProps<'ul'>;
-export const NavbarDesktop: React.FC<NavbarDesktopProps> = ({ className, show, ...rest }) => {
-    const { isLoading, error, data } = useQuery({
-        queryKey: ['categories'],
-        queryFn: getCategoriesWithImage,
-    });
+export const NavbarDesktop: React.FC<NavbarDesktopProps> = ({ className, categories, show, ...rest }) => {
     const pathName = usePathname();
     const linkClasses = 'text-sub-title uppercase text-white';
-
-    if (isLoading) return <Spinner />;
-    if (error) return <p className={'text-body text-red'}>Something went wrong... Please refresh the page</p>;
-
     return (
         <ul className={cn('hidden items-center justify-between space-x-10 text-white ', className)} {...rest}>
             <li>
@@ -29,7 +19,7 @@ export const NavbarDesktop: React.FC<NavbarDesktopProps> = ({ className, show, .
                 </Link>
             </li>
 
-            {data?.map((category, index) => {
+            {categories?.map((category, index) => {
                 const routePath = `/categories/${category.slug}`;
 
                 return (

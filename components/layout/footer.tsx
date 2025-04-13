@@ -1,6 +1,9 @@
 import { AppLogo } from '@/components/AppLogo';
 import { NavbarDesktop } from '@/components/layout/navbar/navbar-desktop';
 import Image from 'next/image';
+import NavbarDesktopWrapper from './navbar/navbar-desktop-wrapper';
+import { Suspense } from 'react';
+import { Spinner } from '../ui/spinner';
 
 export const Footer = () => {
     return (
@@ -12,7 +15,10 @@ export const Footer = () => {
                     }
                 >
                     <AppLogo className={'inline-block'} />
-                    <NavbarDesktop className={'flex flex-col space-x-0 tablet:flex-row tablet:space-x-10'} />
+
+                    <Suspense fallback={<Spinner />}>
+                        <NavbarDesktopWrapper className={'flex flex-col space-x-0 tablet:flex-row tablet:space-x-10'} />
+                    </Suspense>
                 </div>
 
                 <div className={'footer-grid'}>

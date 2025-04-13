@@ -1,5 +1,5 @@
 import { FooterBanner } from '@/components/layout/footer-banner';
-import { CategoriesNavbar } from '@/components/layout/navbar/categories';
+import { CategoriesNavbar } from '@/components/layout/navbar/categories-navbar';
 import { getProductBySlug } from '@/server/actions/products.action';
 import { ProductPreview } from '@/features/product-page/components/product-preview';
 import { ProductDescription } from '@/features/product-page/components/product-description';

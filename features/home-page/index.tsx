@@ -1,7 +1,7 @@
 import styles from './page.module.css';
 import { cn } from '@/lib/utils';
 import { Hero } from './components/hero';
-import { CategoriesNavbar } from '@/components/layout/navbar/categories';
+import { CategoriesNavbar } from '@/components/layout/navbar/categories-navbar';
 import { FeaturedProducts } from '@/features/home-page/components/featured-products/featured-products';
 import { FooterBanner } from '@/components/layout/footer-banner';
 

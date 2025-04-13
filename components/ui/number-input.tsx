@@ -1,10 +1,4 @@
 'use client';
-
-import { useMemo, useState } from 'react';
-import Image from 'next/image';
-import { Button } from '@/components/ui/button';
-import { cn } from '@/lib/utils';
-
 type NumberInputProps = {
     value: number;
     setValue: (value: number) => void | React.Dispatch<React.SetStateAction<number>>;
@@ -13,8 +7,8 @@ type NumberInputProps = {
     increment?: number;
 };
 export const NumberInput: React.FC<NumberInputProps> = ({ value, setValue, min = -999, max = 999, increment }) => {
-    const isMin = useMemo(() => value === min, [value]);
-    const isMax = useMemo(() => value === max, [value]);
+    const isMin = value === min;
+    const isMax = value === max;
     const add = () => {
         if (isMax) return;
         setValue(value + 1);
